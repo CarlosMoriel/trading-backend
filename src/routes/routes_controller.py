@@ -28,8 +28,8 @@ class routes_controller:
         
         @self.app.route('/api/historical/between-dates', methods=['GET'])
         def get_historical_between_dates():
-            initial_date = str(request.args.get('init_date', default = "1 Dec, 2017"))
-            finish_date = str(request.args.get('finish_date', default= "1 Jan, 2018"))
+            initial_date = str(request.args.get('init_date', default = "1 Apr, 2022"))
+            finish_date = str(request.args.get('finish_date', default= "5 Apr, 2022"))
             pair_coin = str(request.args.get('pair_coin' , default= 'BNBBTC'))
             kandle_interval = str(request.args.get('kandle_interval', default= '1h'))
             
