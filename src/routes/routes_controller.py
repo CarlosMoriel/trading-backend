@@ -3,6 +3,7 @@ from flask import request
 from flask import Flask
 from src.controllers.get_historical_kandles import get_historical_kandles
 from binance.client import Client
+from flask_cors import CORS
 
 class routes_controller:
 
@@ -21,6 +22,7 @@ class routes_controller:
     """ Init flask app """
     def init_app(self):
         self.app = Flask(__name__)
+        CORS(self.app, resources={"/api/*": {"origins": "*"}})
    
     def init_historical_kandles_enpoints(self):
         """ Get historical Kandles object """
@@ -36,7 +38,7 @@ class routes_controller:
             response = historical_kandles.get_historical_between_dates(pair_coin, kandle_interval, initial_date, finish_date)
             return jsonify(response)
         
-        @self.app.route('/api/historical/between-dates', methods=['GET'])
+        @self.app.route('/api/historical/from-time-ago', methods=['GET'])
         def get_historical_from_time_ago():
                 time_ago = str(request.args.get('time_ago', default = "1 day ago UTC"))
                 pair_coin = str(request.args.get('pair_coin' , default= 'BNBBTC'))

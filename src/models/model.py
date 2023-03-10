@@ -81,7 +81,7 @@ class model:
         plt.show()
         
         
-        x = [float(i) for i in predict_array[0]]
+        x = [float(i) for i in mainArray[0]]
         print(x)
         result = self.model.predict([x])
         print(result)
